@@ -17,7 +17,11 @@ public class GameManager : MonoBehaviour
     public string movement;
     public string jumpData;
     public string prevMove;
-    public string isJumping;
+    public bool isJumping;
+
+    private float lastJumpTime;
+    public float jumpCooldown = 1f;
+
 
     public TextMeshProUGUI scoreText;
     private int score = 0;
@@ -99,8 +103,9 @@ public class GameManager : MonoBehaviour
             {
                 EventManager.RightBendEvent();
             }
-            if(jumpData == "both hands up")
+            if(jumpData == "both hands up" && Time.time - lastJumpTime > jumpCooldown)
             {
+                lastJumpTime = Time.time;
                 EventManager.BothHandsUpEvent();
             }
 

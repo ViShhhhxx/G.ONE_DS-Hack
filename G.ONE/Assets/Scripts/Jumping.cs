@@ -32,6 +32,7 @@ public class Jumping : MonoBehaviour
         animator.SetBool("isJumping", true);
         rb.velocity = new Vector3(0, jumpForce, 0);
         isJumping = true;
+        GameManager.Instance.isJumping = true;
         lastJumpTime = Time.time;
         Invoke("EndJumpAnimation", 0.5f); 
     }
