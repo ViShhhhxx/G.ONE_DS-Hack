@@ -5,6 +5,7 @@ import time
 import mediapipe as mp
 import matplotlib.pyplot as plt
 import socket
+import handsmotioncap as hmc
 
 #initialise mediapipe
 
@@ -175,4 +176,6 @@ def videoClassification():
             break
 
 
-videoClassification()
+if(__name__ == '__main__'):
+    videoClassification()
+    hmc.detect_pose()

@@ -50,7 +50,7 @@ public class GenerateLevel : MonoBehaviour
         generatedSections.Add(newSection);
 
         // Adjust zPos for the next section
-        zPos += 20;
+        zPos += 50;
 
         SpawnObstacles(newSection);
 
@@ -62,10 +62,12 @@ public class GenerateLevel : MonoBehaviour
 
     void SpawnObstacles(GameObject section)
     {
-        float spawnRange = roadWidth / 2f;
+        float spawnRange = 5;
 
         foreach (GameObject obstaclePrefab in obstaclePrefabs)
         {
+            //Debug.Log(section.transform.position.z);
+            Debug.Log(spawnRange);
             Vector3 obstaclePosition = FindValidObstaclePosition(spawnRange, section.transform.position.z);
 
             // Check if the obstacle collides with the player
@@ -104,7 +106,7 @@ public class GenerateLevel : MonoBehaviour
 
     void DestroyPassedSections()
     {
-        float destroyZPos = playerTransform.position.z - 20f; // Adjust as needed
+        float destroyZPos = playerTransform.position.z - 50f; // Adjust as needed
 
         // Destroy sections that have been passed by the player
         for (int i = 0; i < generatedSections.Count; i++)

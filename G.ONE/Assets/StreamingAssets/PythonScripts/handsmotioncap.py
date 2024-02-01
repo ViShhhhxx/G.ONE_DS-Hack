@@ -1,7 +1,14 @@
 import cv2
 import mediapipe as mp
+import socket
+
 
 def detect_pose():
+    
+    # create socket
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    serverAddressPort = ("127.0.0.1", 6969)
+    
     mp_pose = mp.solutions.pose
     mp_drawing = mp.solutions.drawing_utils
 
@@ -48,6 +55,12 @@ def detect_pose():
 
                 # Print positions to console
                 print(hand_position)
+                sock.sendto(str.encode(str(hand_position)), serverAddressPort)
+                
+
+
+                
+
             except:
                 pass
             

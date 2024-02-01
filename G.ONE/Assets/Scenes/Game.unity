@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 6075488e92597c9478c885b7b54674a3, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e1ec0e2320d2d4fb9a393769378ce0a1, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.54870796, g: 0.854689, b: 0.92202777, a: 1}
+  m_IndirectSpecularColor: {r: 0.6355352, g: 0.8860624, b: 0.9148035, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -235,7 +235,7 @@ MonoBehaviour:
   isPaused: 0
   pauseMenu: {fileID: 2054989155}
   isGameOver: 0
-  speed: 0
+  speed: 10
   GameStatus: 0
 --- !u!4 &189825793
 Transform:
@@ -264,10 +264,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c9f0d7e61bf8c459bb189cc6ed5855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 9999
+  positionPort: 9999
+  jumpPort: 6969
   startRecieve: 1
   printToConsole: 1
-  data: 
+  positionData: 
+  jumpData: 
 --- !u!114 &189825795
 MonoBehaviour:
   m_ObjectHideFlags: 0

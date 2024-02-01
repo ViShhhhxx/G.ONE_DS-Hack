@@ -9,19 +9,25 @@ using System;
 
 public class UDPRecieve : MonoBehaviour
 {
-    Thread recieveThread;
-    UdpClient client;
-    public int port;
+    Thread recievePositionThread, recieveJumpThread;
+    UdpClient positionClient, jumpClient;
+    public int positionPort, jumpPort;
     public bool startRecieve = true;
     public bool printToConsole = true;
-    public string data;
+    public string positionData;
+    public string jumpData;
 
     // Start is called before the first frame update
     void Start()
     {
-        recieveThread = new Thread(new ThreadStart(RecieveData));
-        recieveThread.IsBackground = true;
-        recieveThread.Start();
+        recievePositionThread = new Thread(new ThreadStart(RecievePositionData));
+        recievePositionThread.IsBackground = true;
+        recievePositionThread.Start();
+
+        recieveJumpThread = new Thread(new ThreadStart(RecieveJumpData));
+        recieveJumpThread.IsBackground = true;
+        recieveJumpThread.Start();
+
         startRecieve = true;
     }
 
@@ -32,10 +38,10 @@ public class UDPRecieve : MonoBehaviour
     }
 
 
-    private void RecieveData()
+    private void RecievePositionData()
     {
         Debug.Log("started udp recieve");
-        client = new UdpClient(port);
+        positionClient = new UdpClient(positionPort);
         while (startRecieve)
         {
             if (GameManager.Instance.StartRecieving)
@@ -43,14 +49,47 @@ public class UDPRecieve : MonoBehaviour
                 try
                 {
                     IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
-                    byte[] dataByte = client.Receive(ref anyIP);
-                    data = Encoding.UTF8.GetString(dataByte);
+                    byte[] dataByte = positionClient.Receive(ref anyIP);
+                    positionData = Encoding.UTF8.GetString(dataByte);
 
-                    GameManager.Instance.movement = data;
+                    GameManager.Instance.movement = positionData;
 
                     if (printToConsole)
                     {
-                        Debug.Log("Recieved data from " + anyIP + ": " + data);
+                        Debug.Log("Recieved data from " + anyIP + ": " + positionData);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e.ToString());
+                }
+            }
+            if (GameManager.Instance.stopRecieving)
+            {
+                break;
+            }
+        }
+    }
+
+    private void RecieveJumpData()
+    {
+        Debug.Log("started udp recieve");
+        jumpClient = new UdpClient(jumpPort);
+        while (startRecieve)
+        {
+            if (GameManager.Instance.StartRecieving)
+            {
+                try
+                {
+                    IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
+                    byte[] dataByte = jumpClient.Receive(ref anyIP);
+                    jumpData = Encoding.UTF8.GetString(dataByte);
+
+                    GameManager.Instance.movement = jumpData;
+
+                    if (printToConsole)
+                    {
+                        Debug.Log("Recieved data from " + anyIP + ": " + jumpData);
                     }
                 }
                 catch (Exception e)
@@ -66,7 +105,8 @@ public class UDPRecieve : MonoBehaviour
     }
 
     void OnDisable(){
-        recieveThread.Abort();
+        recievePositionThread.Abort();
+        recieveJumpThread.Abort();
     }
 
 }
