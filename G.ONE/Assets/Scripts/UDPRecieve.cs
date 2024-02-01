@@ -85,7 +85,7 @@ public class UDPRecieve : MonoBehaviour
                     byte[] dataByte = jumpClient.Receive(ref anyIP);
                     jumpData = Encoding.UTF8.GetString(dataByte);
 
-                    GameManager.Instance.movement = jumpData;
+                    GameManager.Instance.jumpData = jumpData;
 
                     if (printToConsole)
                     {

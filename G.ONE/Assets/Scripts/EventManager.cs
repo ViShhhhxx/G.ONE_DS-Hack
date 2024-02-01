@@ -13,21 +13,19 @@ public class EventManager : MonoBehaviour
     public delegate void CenterBend();
     public static event CenterBend OnCenterBend;
 
+    public delegate void BothHandsUp();
+    public static event BothHandsUp OnBothHandsUp;
+
     public delegate void GameOver();
     public static event GameOver OnGameOver;
 
 
-
-    // Start is called before the first frame update
-    void Start()
+    public static void BothHandsUpEvent()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (OnBothHandsUp != null)
+        {
+            OnBothHandsUp();
+        }
     }
 
 

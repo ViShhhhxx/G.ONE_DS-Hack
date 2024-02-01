@@ -15,13 +15,16 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public bool stopRecieving = false;
     public string movement;
+    public string jumpData;
     public string prevMove;
+    public string isJumping;
 
     public TextMeshProUGUI scoreText;
     private int score = 0;
 
     public GameObject[] vegetablePrefabs;
     public PlayerMove playerMoveScript;
+    public Jumping playerJump;
 
     public int timer;
     public bool isPaused = false;
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
         EventManager.OnLeftBend += MoveLeft;
         EventManager.OnCenterBend += MoveCenter;
         EventManager.OnGameOver += OnGameOver;
+        EventManager.OnBothHandsUp += OnJump;
     }
 
     private void Awake()
@@ -95,6 +99,10 @@ public class GameManager : MonoBehaviour
             {
                 EventManager.RightBendEvent();
             }
+            if(jumpData == "both hands up")
+            {
+                EventManager.BothHandsUpEvent();
+            }
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -114,6 +122,7 @@ public class GameManager : MonoBehaviour
         EventManager.OnLeftBend -= MoveLeft;
         EventManager.OnCenterBend -= MoveCenter;
         EventManager.OnGameOver -= OnGameOver;
+        EventManager.OnBothHandsUp -= OnJump;
     }
 
     private IEnumerator WaitOnes()
@@ -209,6 +218,12 @@ public class GameManager : MonoBehaviour
             playerMoveScript.Move(-1);
         }
         prevMove = "Center";
+    }
+
+    private void OnJump()
+    {
+        Debug.Log("Jumping");
+        playerJump.Jump();
     }
 
     public void OnGameOver()

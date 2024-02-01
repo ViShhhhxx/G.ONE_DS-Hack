@@ -27,7 +27,7 @@ public class Jumping : MonoBehaviour
         }
     }
 
-    void Jump()
+    public void Jump()
     {
         animator.SetBool("isJumping", true);
         rb.velocity = new Vector3(0, jumpForce, 0);
