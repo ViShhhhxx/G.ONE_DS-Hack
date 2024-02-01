@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     public string prevMove;
     public bool isJumping;
 
+
+    public string jumpingString;
+
+
     private float lastJumpTime;
     public float jumpCooldown = 1f;
 
@@ -103,7 +107,7 @@ public class GameManager : MonoBehaviour
             {
                 EventManager.RightBendEvent();
             }
-            if(jumpData == "both hands up" && Time.time - lastJumpTime > jumpCooldown)
+            if(jumpData == jumpingString && Time.time - lastJumpTime > jumpCooldown)
             {
                 lastJumpTime = Time.time;
                 EventManager.BothHandsUpEvent();

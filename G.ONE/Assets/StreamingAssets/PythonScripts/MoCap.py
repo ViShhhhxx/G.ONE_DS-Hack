@@ -183,7 +183,7 @@ def videoClassification():
                 wristright = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
                     
                 if wristleft[1] < elbowleft[1] and wristright[1] < elbowright[1]:
-                    hand_position = "both hands up"
+                    hand_position = "Jumping"
                 elif wristleft[1] < elbowleft[1]:
                     hand_position = "left hand up"
                 elif wristright[1] < elbowright[1]:
