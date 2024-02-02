@@ -18,6 +18,6 @@ public class SettingsManager : MonoBehaviour
     public void setSpeed()
     {
         PlayerPrefs.SetInt("Speed", Mathf.RoundToInt(speedSlider.value));
-        UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
     }
 }

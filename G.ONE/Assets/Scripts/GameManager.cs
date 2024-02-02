@@ -237,11 +237,12 @@ public class GameManager : MonoBehaviour
 
     public void OnGameOver()
     {
+        PlayerPrefs.SetInt("Speed", speed);
         GameStatus = 0;
         PlayerPrefs.SetInt("Score", score);
         PlayerPrefs.SetString("Time", ScoringSystem.finalTime);
         PlayerPrefs.Save();
-        SaveDataInCSV();
+        //SaveDataInCSV();
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
 
