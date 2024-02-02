@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public string prevMove;
     public bool isJumping;
 
+    public TextMeshProUGUI countdown;
+
 
     public string jumpingString;
 
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         prevMove = "";
         isPaused = false;
+        countdown.text = timer.ToString();
         StartCoroutine(WaitOnes());
         StartCoroutine(SpawnVegetables());
         PlayerMove playerMoveScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
@@ -91,6 +94,7 @@ public class GameManager : MonoBehaviour
     {
         if (timer <= 0 && !isGameOver)
         {
+            countdown.text = "";
             if (isPaused == false)
             {
                 Time.timeScale = 1;
@@ -140,6 +144,7 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(1f);
             timer--;
+            countdown.text = timer.ToString();
         }
     }
 

@@ -14,6 +14,7 @@ public class GameOverManager : MonoBehaviour
 
     public GameObject ScoreTxt, TimeTxt;
     public TMP_InputField Name, id, age, weight, height;
+    public TMP_Dropdown gender;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class GameOverManager : MonoBehaviour
 
     public void SaveDataInCSV()
     {
-        if(Name.text == "" || id.text == "" || age.text == "" || weight.text == "" || height.text == "")
+        if(Name.text == "" || id.text == "" || age.text == "" || weight.text == "" || height.text == "" || gender.value == 0)
         {
             Debug.Log("Please fill all the fields");
             return;
@@ -34,8 +35,8 @@ public class GameOverManager : MonoBehaviour
         {
             using (StreamWriter sw = File.CreateText(filePath))
             {
-                sw.Write("Paitient Name,ID,Age,Weight,Height,Score,Time Taken,Game Speed");
-                string data = $"{Name.text},{id.text},{age.text},{weight.text},{height.text},{PlayerPrefs.GetInt("Score")},{PlayerPrefs.GetString("Time")},{PlayerPrefs.GetInt("Speed")}";
+                sw.Write("Paitient Name,ID,Gender,Age,Weight,Height,Score,Time Taken,Game Speed");
+                string data = $"{Name.text},{id.text},{gender.options[gender.value].text},{age.text},{weight.text},{height.text},{PlayerPrefs.GetInt("Score")},{PlayerPrefs.GetString("Time")},{PlayerPrefs.GetInt("Speed")}";
                 sw.Write(data);
                 sw.Flush();
                 sw.Close();
@@ -46,9 +47,9 @@ public class GameOverManager : MonoBehaviour
             StreamReader sr = new StreamReader(filePath);
             string prevData = sr.ReadToEnd();
             sr.Close();
-            string data = prevData + $"\n{Name.text},{id.text},{age.text},{weight.text},{height.text},{PlayerPrefs.GetInt("Score")},{PlayerPrefs.GetString("Time")},{PlayerPrefs.GetInt("Speed")}";
+            string data = prevData + $"\n{Name.text},{id.text},{gender.options[gender.value].text},{age.text},{weight.text},{height.text},{PlayerPrefs.GetInt("Score")},{PlayerPrefs.GetString("Time")},{PlayerPrefs.GetInt("Speed")}";
             Debug.Log(data);
-            Debug.Log($"\n{Name.text},{id.text},{age.text},{weight.text},{height.text},{PlayerPrefs.GetInt("Score")},{PlayerPrefs.GetString("Time")},{PlayerPrefs.GetInt("Speed")}");
+            Debug.Log($"\n{Name.text},{id.text},{gender.options[gender.value].text},{age.text},{weight.text},{height.text},{PlayerPrefs.GetInt("Score")},{PlayerPrefs.GetString("Time")},{PlayerPrefs.GetInt("Speed")}");
             using (StreamWriter sw = new StreamWriter(filePath))
             {
                 sw.Write(data);

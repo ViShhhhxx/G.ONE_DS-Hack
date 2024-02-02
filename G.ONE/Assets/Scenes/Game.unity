@@ -228,6 +228,7 @@ MonoBehaviour:
   jumpData: 
   prevMove: 
   isJumping: 0
+  countdown: {fileID: 2124328103}
   jumpingString: Jumping
   jumpCooldown: 1
   scoreText: {fileID: 514540060}
