@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "996798054872",
+    "project_id": "databsae-82960",
+    "storage_bucket": "databsae-82960.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996798054872:android:f90192e095846ecd2732ad",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.FirebaseAuthTutorialStarterProject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGlUaidvaWnYqaGqaFHY2F_P3lOV2u2ww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
