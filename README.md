@@ -1,4 +1,4 @@
-# G-one : Because getting healthy shouldn't be a chore. 🤸🏼‍♀️ 
+# G-one : Because getting healthy shouldn't be a chore. 🏃🏼‍♂️🏃🏼‍♀️
 
 ## Problem Statement 🦾
 Physical therapy often battles disengagement, leading to poor adherence. Repetitive exercises, one-size-fits-all routines, and minimal feedback leave patients bored and frustrated. 
